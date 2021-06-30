@@ -39,8 +39,8 @@
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
 			
 		</p:panelGrid>
-		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" />
-		<p:commandButton value="Novo" action="#{usuarioManagedBean.novo}" />
+		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}"  />
+		<p:commandButton value="Novo"  action="#{usuarioManagedBean.novo}" />
 	</h:form>
 
 	<h:form>
@@ -71,28 +71,31 @@
 			<p:column>
 				<h:outputText value="#{usu.cpf}" />
 			</p:column>
-			
+			<!-- botao editar -->
 			<p:column>
 				<h:commandLink immediate="true" id="botaoeditar">
-					<h:graphicImage url="resources/img/editar-mensagem.png" />
+					<h:graphicImage url="../resources/img/editar-mensagem.png" />
 					<f:setPropertyActionListener
 						target="#{usuarioManagedBean.usuarioPessoa}" value="#{usu}" />
 					<f:ajax execute="botaoeditar" render=":formdados" />
 				</h:commandLink>
 			</p:column>
+			<!-- botao excluir -->
 			<p:column>
+			
 				<h:commandLink id="botaoexcluir" immediate="true"
 					action="#{usuarioManagedBean.deletarID}">
-					<h:graphicImage url="resources/img/deletar-usuario.png" />
+					<h:graphicImage url="../resources/img/deletar-usuario.png" />
 					<f:ajax execute="botaoexcluir" render="@form :formdados:msg" />
 					<f:setPropertyActionListener value="#{usu}"
 						target="#{usuarioManagedBean.usuarioPessoa}" />
 				</h:commandLink>
 			</p:column>
+			<!-- botao telefone -->
 			<p:column>
 				<h:commandLink imediate="true" action="telefone.xhtml"
 					id="botaotelefone">
-					<h:graphicImage url="resources/img/deletar-usuario.png" />
+					<h:graphicImage url="../resources/img/deletar-usuario.png" />
 					<f:param name="codigousuario" value="#{usu.id}" />
 				</h:commandLink>
 			</p:column>
