@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<h:form>
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Pagina com JSF" action="index.xhtml" />
+			<p:menuitem value="Pagina com Primefaces" action="primefaces.xhtml" />
+		</p:breadCrumb>
+	</h:form>
+
+	<h:form id="formdados">
+		<h:messages showDetail="true" showSumary="false" id="msg" />
+		<p:panelGrid columns="2">
+		<!-- teremos que restringir futuramente -->
+			<p:outputLabel></p:outputLabel>
+			<p:outputLabel>Tipo</p:outputLabel>
+			<p:selectOneMenu value="#{usuarioManagedBean.usuarioPessoa.id_perfil}">
+				<f:selectItem itemValue="0" itemLabel="Usuário" />
+				<f:selectItem itemValue="1" itemLabel="Professor" />
+				<f:selectItem itemValue="2" itemLabel="Administrador" />
+			</p:selectOneMenu>
+			<p:outputLabel>Nome</p:outputLabel>
+			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.nome}"
+				required="true" requiredMessage="Nome é obrigatório!" />
+			<p:outputLabel>Sobrenome</p:outputLabel>
+			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.sobrenome}" />
+			<p:outputLabel>E-mail</p:outputLabel>
+			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.email}" />
+			<p:outputLabel>CPF</p:outputLabel>
+			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.cpf}" />
+			<p:outputLabel>Senha</p:outputLabel>
+			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
+			
+		</p:panelGrid>
+		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" />
+		<p:commandButton value="Novo" action="#{usuarioManagedBean.novo}" />
+	</h:form>
+
+	<h:form>
+		<p:panel header="Consultar Usuário">
+			<p:panelGrid columns="3">
+				<h:outputLabel value="Nome:" />
+				<p:inputText value="#{usuarioManagedBean.pesquisa}" />
+				<p:commandButton value="Buscar" actionListener="#{usuarioManagedBean.pesquisar}" update="formtabela"/>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+
+	<h:form id="formtabela">
+		<p:dataTable value="#{usuarioManagedBean.list}" var="usu">
+			<p:column>
+				<h:outputText value="#{usu.id}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{usu.nome}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{usu.sobrenome}" />
+			</p:column>
+			
+			<p:column>
+				<h:outputText value="#{usu.email}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{usu.cpf}" />
+			</p:column>
+			
+			<p:column>
+				<h:commandLink immediate="true" id="botaoeditar">
+					<h:graphicImage url="resources/img/editar-mensagem.png" />
+					<f:setPropertyActionListener
+						target="#{usuarioManagedBean.usuarioPessoa}" value="#{usu}" />
+					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+			<p:column>
+				<h:commandLink id="botaoexcluir" immediate="true"
+					action="#{usuarioManagedBean.deletarID}">
+					<h:graphicImage url="resources/img/deletar-usuario.png" />
+					<f:ajax execute="botaoexcluir" render="@form :formdados:msg" />
+					<f:setPropertyActionListener value="#{usu}"
+						target="#{usuarioManagedBean.usuarioPessoa}" />
+				</h:commandLink>
+			</p:column>
+			<p:column>
+				<h:commandLink imediate="true" action="telefone.xhtml"
+					id="botaotelefone">
+					<h:graphicImage url="resources/img/deletar-usuario.png" />
+					<f:param name="codigousuario" value="#{usu.id}" />
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

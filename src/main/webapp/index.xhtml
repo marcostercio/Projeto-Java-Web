@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head></h:head>
+
+<h:body>
+	<h:form>
+	<h:messages showDetail="true" />
+		<h:panelGrid columns="2">
+			<h:outputLabel>Código</h:outputLabel>
+			<h:inputText readonly="true"
+				value="#{usuarioManagedBean.usuarioPessoa.id}" />
+			<h:outputLabel>Nome</h:outputLabel>
+			<h:inputText value="#{usuarioManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Nome é obrigatório!" />
+			<h:outputLabel>Senha</h:outputLabel>
+			<h:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
+			<h:outputLabel>Sobre Nome</h:outputLabel>
+			<h:inputText value="#{usuarioManagedBean.usuarioPessoa.sobrenome}" />
+		</h:panelGrid>
+		<h:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" />
+		<h:commandButton value="Novo" action="#{usuarioManagedBean.novo}" />
+
+		<h:dataTable value="#{usuarioManagedBean.list}" var="usu">
+			<h:column>
+				<h:outputText value="#{usu.id}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{usu.nome}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{usu.senha}" />
+			</h:column>
+			<h:column>
+				<h:outputText value="#{usu.sobrenome}" />
+			</h:column>
+			<h:column>
+				<h:commandLink value="">Editar
+			<f:setPropertyActionListener
+						target="#{usuarioManagedBean.usuarioPessoa}" value="#{usu}" />
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<h:commandLink 
+					action="#{usuarioManagedBean.deletarID}">
+					<f:setPropertyActionListener value="#{usu}"
+						target="#{usuarioManagedBean.usuarioPessoa}" />
+				</h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+
+</html>
