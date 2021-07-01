@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form id="formulario">
+		<p:messages showDetail="true" showSummary="false" id="msg" />
+		<p:panelGrid columns="2">
+			<p:outputLabel>Usuário:</p:outputLabel>
+			<p:outputLabel value="#{telefoneManagedBean.usuario.nome}" />
+			<p:outputLabel>Telefone:</p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.telefone.telefone}" />
+			<p:outputLabel>Tipo</p:outputLabel>
+			<p:selectOneMenu value="#{telefoneManagedBean.telefone.tipo}">
+				<f:selectItem itemValue="RESIDENCIAL" itemLabel="Residencial" />
+				<f:selectItem itemValue="CASA" itemLabel="Casa" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		<br />
+		<p:commandButton value="Salvar" action="#{telefoneManagedBean.salvar}"
+			ajax="false" />
+		<p:commandButton value="Novo" immediate="true"
+			action="#{telefoneManagedBean.novo}" />
+	</h:form>
+
+	<h:form id="formlistatelefones">
+		<p:dataTable value="#{telefoneManagedBean.usuario.telUsuario}"
+			var="tel" border="1" cellspacing="5">
+			<f:facet name="header">Lista de Telefones</f:facet>
+			<p:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="#{tel.cod}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Número</f:facet>
+				<h:outputText value="#{tel.telefone}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputText value="#{tel.tipo}" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">Ação</f:facet>
+				<p:commandLink id="botaoexcluir"
+					action="#{telefoneManagedBean.remover}">
+					<f:setPropertyActionListener value="#{tel}"
+						target="#{telefoneManagedBean.telefone}" />
+					<p:graphicImage
+						url="https://image.flaticon.com/icons/png/512/1632/1632602.png"
+						width="20" height="20" />
+					<f:ajax execute="botaoexcluir" render="@form" />
+				</p:commandLink>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>
