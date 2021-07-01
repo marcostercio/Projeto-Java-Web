@@ -10,6 +10,9 @@
 		<class>model.Usuario</class>
 		<class>model.Telefone</class>
 		<class>model.Perfil</class>
+		<class>model.Postagem</class>
+		<class>model.CategoriaPostagem</class>
+		<class>model.Visualizacao</class>
 		<properties>
 			<!-- Propriedades JDBC -->
 			<property name="javax.persistence.jdbc.driver"

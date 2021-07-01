@@ -1,42 +1,42 @@
 package managedbean;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import model.Usuario;
-import DAO.DaoGeral;
-import DAO.DaoUsuario;
+import DAO.DaoPostagem;
+import model.Postagem;
 
 @ViewScoped
-@ManagedBean(name = "usuarioManagedBean")
-public class UsuarioManagedBean {
-	
-	private List<Usuario> list = new ArrayList<Usuario>();
-	private DaoUsuario<Usuario> daoGeral = new DaoUsuario<Usuario>();
+@ManagedBean(name = "postagemManagedBean")
+public class PostagemManagedBean {
+	private Postagem postagem = new Postagem();
+	private List<Postagem> list = new ArrayList<Postagem>();
+	private DaoPostagem<Postagem> daoGeral = new DaoPostagem<Postagem>();
 	private String pesquisa;
-	private Usuario usuarioPessoa = new Usuario();
+	
 	//criação do método post construct, vai consultar apenas uma vez no banco
 	@PostConstruct
 	public void init() {
-		list = daoGeral.listar(Usuario.class);
+		list = daoGeral.listar(Postagem.class);
 	}
 
-	public Usuario getUsuarioPessoa() {
-		return usuarioPessoa;
+	public Postagem getPostagem() {
+		return postagem;
 	}
 
-	public void setUsuarioPessoa(Usuario usuarioPessoa) {
-		this.usuarioPessoa = usuarioPessoa;
+	public void setPostagem(Postagem postagem) {
+		this.postagem = postagem;
 	} 
 
 	public String salvar() {
-		daoGeral.salvar(usuarioPessoa);
+		daoGeral.salvar(postagem);
 		//quando salvar adicionar na lista
-		list.add(usuarioPessoa);
+		list.add(postagem);
 		//mensagem de salvamento com sucesso;
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Informação: ","Salvo com sucesso!"));
 		return "";
@@ -47,17 +47,17 @@ public class UsuarioManagedBean {
 	}
 
 	public String novo() {
-		usuarioPessoa = new Usuario();
+		postagem = new Postagem();
 		return "";
 	}
 
 	public String deletarID() {
 		//adicionamos o try catch para pegar a excessão enviada pelo throws.
 		try {
-		//daoGeral.delatarID(usuarioPessoa); não usaremos mais esse. use este método para o telefone
-		daoGeral.removerUsuario(usuarioPessoa);
-		list.remove(usuarioPessoa);
-		usuarioPessoa = new Usuario();
+		//daoGeral.delatarID(postagem); não usaremos mais esse. use este método para o telefone
+		daoGeral.removerPostagem(postagem);
+		list.remove(postagem);
+		postagem = new Postagem();
 		//jogando mensagem de deletado com sucesso.
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Informação: ","Removido com sucesso!"));
 	} catch (Exception e) {
@@ -71,8 +71,8 @@ public class UsuarioManagedBean {
 		return "";
 	}
 
-	public List<Usuario> getList() {
-		//aqui teremos apenas um return list, era assim daoGeral.listar(Usuario.class);
+	public List<Postagem> getList() {
+		//aqui teremos apenas um return list, era assim daoGeral.listar(Postagem.class);
 		return list;
 	}
 	

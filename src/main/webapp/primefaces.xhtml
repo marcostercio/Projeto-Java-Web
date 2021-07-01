@@ -16,7 +16,7 @@
 	</h:form>
 
 	<h:form id="formdados">
-		<h:messages showDetail="true" showSumary="false" id="msg" />
+		<p:messages showDetail="true" showSumary="false" id="msg" />
 		<p:panelGrid columns="2">
 		<!-- teremos que restringir futuramente -->
 			<p:outputLabel></p:outputLabel>
@@ -39,8 +39,8 @@
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
 			
 		</p:panelGrid>
-		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}"  />
-		<p:commandButton value="Novo"  action="#{usuarioManagedBean.novo}" />
+		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" ajax="false"/>
+		<p:commandButton value="Novo"  action="#{usuarioManagedBean.novo}"  />
 	</h:form>
 
 	<h:form>

@@ -13,7 +13,7 @@ public class Telefone {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long cod;
+	private Long id;
 
 	@Column(nullable = false)
 	private String telefone;
@@ -26,11 +26,11 @@ public class Telefone {
 	private Usuario usuario;
 
 	public Long getCod() {
-		return cod;
+		return id;
 	}
 
-	public void setCod(Long cod) {
-		this.cod = cod;
+	public void setCod(Long id) {
+		this.id = id;
 	}
 
 	public String getTelefone() {

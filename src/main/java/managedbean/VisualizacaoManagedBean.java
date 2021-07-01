@@ -1,42 +1,42 @@
 package managedbean;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import model.Usuario;
-import DAO.DaoGeral;
-import DAO.DaoUsuario;
+import DAO.DaoVisualizacao;
+import model.Visualizacao;
 
 @ViewScoped
-@ManagedBean(name = "usuarioManagedBean")
-public class UsuarioManagedBean {
-	
-	private List<Usuario> list = new ArrayList<Usuario>();
-	private DaoUsuario<Usuario> daoGeral = new DaoUsuario<Usuario>();
+@ManagedBean(name = "visualizacaoManagedBean")
+public class VisualizacaoManagedBean {
+	private Visualizacao visualizacao = new Visualizacao();
+	private List<Visualizacao> list = new ArrayList<Visualizacao>();
+	private DaoVisualizacao<Visualizacao> daoGeral = new DaoVisualizacao<Visualizacao>();
 	private String pesquisa;
-	private Usuario usuarioPessoa = new Usuario();
+	
 	//criação do método post construct, vai consultar apenas uma vez no banco
 	@PostConstruct
 	public void init() {
-		list = daoGeral.listar(Usuario.class);
+		list = daoGeral.listar(Visualizacao.class);
 	}
 
-	public Usuario getUsuarioPessoa() {
-		return usuarioPessoa;
+	public Visualizacao getVisualizacao() {
+		return visualizacao;
 	}
 
-	public void setUsuarioPessoa(Usuario usuarioPessoa) {
-		this.usuarioPessoa = usuarioPessoa;
+	public void setVisualizacao(Visualizacao Visualizacao) {
+		this.visualizacao = Visualizacao;
 	} 
 
 	public String salvar() {
-		daoGeral.salvar(usuarioPessoa);
+		daoGeral.salvar(visualizacao);
 		//quando salvar adicionar na lista
-		list.add(usuarioPessoa);
+		list.add(visualizacao);
 		//mensagem de salvamento com sucesso;
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Informação: ","Salvo com sucesso!"));
 		return "";
@@ -47,17 +47,17 @@ public class UsuarioManagedBean {
 	}
 
 	public String novo() {
-		usuarioPessoa = new Usuario();
+		visualizacao = new Visualizacao();
 		return "";
 	}
 
 	public String deletarID() {
 		//adicionamos o try catch para pegar a excessão enviada pelo throws.
 		try {
-		//daoGeral.delatarID(usuarioPessoa); não usaremos mais esse. use este método para o telefone
-		daoGeral.removerUsuario(usuarioPessoa);
-		list.remove(usuarioPessoa);
-		usuarioPessoa = new Usuario();
+		//daoGeral.delatarID(visualizacao); não usaremos mais esse. use este método para o telefone
+		daoGeral.removerVisualizacao(visualizacao);
+		list.remove(visualizacao);
+		visualizacao = new Visualizacao();
 		//jogando mensagem de deletado com sucesso.
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Informação: ","Removido com sucesso!"));
 	} catch (Exception e) {
@@ -71,8 +71,8 @@ public class UsuarioManagedBean {
 		return "";
 	}
 
-	public List<Usuario> getList() {
-		//aqui teremos apenas um return list, era assim daoGeral.listar(Usuario.class);
+	public List<Visualizacao> getList() {
+		//aqui teremos apenas um return list, era assim daoGeral.listar(Visualizacao.class);
 		return list;
 	}
 	
