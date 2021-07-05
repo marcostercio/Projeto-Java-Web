@@ -9,7 +9,6 @@
 		<!-- Aqui são listadas todas as entidades -->
 		<class>model.Usuario</class>
 		<class>model.Telefone</class>
-		<class>model.Perfil</class>
 		<class>model.Postagem</class>
 		<class>model.CategoriaPostagem</class>
 		<class>model.Visualizacao</class>
@@ -19,10 +18,10 @@
 				value="com.mysql.jdbc.Driver" />
 			<!-- tinha um erro aqui das barras -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://127.0.0.1:3306/pinboarddb" />
-			<property name="javax.persistence.jdbc.user" value="root" />
+				value="jdbc:mysql://127.0.0.1:3306/heroku_20f48116cec70ed" />
+			<property name="javax.persistence.jdbc.user" value="b5dd3b6ce577b7" />
 			<property name="javax.persistence.jdbc.password"
-				value="" />
+				value="d08ffc25" />
 			<!-- Configurações específicas do Hibernate -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />

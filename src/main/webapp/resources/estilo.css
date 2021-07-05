@@ -1,0 +1,16 @@
+.ui-menubar,.ui-menu-child,.ui-menu, .ui-header {
+    background: #6a6a6a !important;
+    color:#fff;
+}
+.ui-menubar,.ui-menu-child,.ui-menu a {
+	color:#fff;
+}
+.ui-menubar,.ui-menu-child,.ui-menu a:hover {
+	background:#ccc;
+}
+.ui-button, .ui-commandButton {
+	background:#ccc;
+	margin:5px 5px 5px 0px;
+	
+	
+}

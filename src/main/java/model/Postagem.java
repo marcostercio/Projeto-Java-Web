@@ -15,9 +15,8 @@ public class Postagem {
 	private long idUsuario;
 	private String titulo;
 	private String conteudo;
-	private String restricao;
 	private String metaTag;
-	private long idCategoria;
+	private String categoria;
 	public long getId() {
 		return id;
 	}
@@ -42,24 +41,20 @@ public class Postagem {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	public String getRestricao() {
-		return restricao;
-	}
-	public void setRestricao(String restricao) {
-		this.restricao = restricao;
-	}
+
 	public String getMetaTag() {
 		return metaTag;
 	}
 	public void setMetaTag(String metaTag) {
 		this.metaTag = metaTag;
 	}
-	public long getIdCategoria() {
-		return idCategoria;
+	public String getCategoria() {
+		return categoria;
 	}
-	public void setIdCategoria(long idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
+
 	
 	
 	

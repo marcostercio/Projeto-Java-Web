@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
+</h:head>
+
+<h:body>	
+<h:graphicImage url="../resources/img/logo_size.jpg"/>
+	<p:menubar>
+		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
+		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
+		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
+		
+	</p:menubar>
+
+
+	<h:form id="formdados">
+		<p:messages showDetail="true" showSumary="false" id="msg" />
+		<p:panelGrid columns="2">
+			<!-- teremos que restringir futuramente -->
+			<p:outputLabel>
+				<p:selectOneMenu
+					value="#{postagemManagedBean.postagem.categoria}">
+					<f:selectItem itemValue="aviso" itemLabel="Aviso" />
+					<f:selectItem itemValue="oportunidade" itemLabel="Oportunidade" />
+
+				</p:selectOneMenu>
+			</p:outputLabel>
+
+			<p:outputLabel>Titulo</p:outputLabel>
+			<p:inputText value="#{postagemManagedBean.postagem.titulo}"
+				required="true" requiredMessage="Titulo é obrigatório!" />
+			<p:outputLabel>Conteúdo</p:outputLabel>
+			<p:inputTextarea value="#{postagemManagedBean.postagem.conteudo}"
+				rows="6" cols="33" />
+
+		</p:panelGrid>
+		<p:commandButton value="Salvar" action="#{postagemManagedBean.salvar}"
+			ajax="false" />
+		<p:button value="Novo" action="#{postagemManagedBean.novo}" />
+	</h:form>
+
+	<h:form>
+		<p:panel header="Consultar Postagem">
+			<p:panelGrid columns="3">
+				<h:outputLabel value="titulo:" />
+				<p:inputText value="#{postagemManagedBean.pesquisa}" />
+				<p:commandButton value="Buscar"
+					actionListener="#{postagemManagedBean.pesquisar}"
+					update="formtabela" />
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+
+	<h:form id="formtabela">
+		<p:dataTable value="#{postagemManagedBean.list}" var="post">
+			<p:column>
+				<h:outputText value="#{post.id}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{post.titulo}" />
+			</p:column>
+			<p:column>
+				<h:outputText value="#{post.conteudo}" />
+			</p:column>
+			<!-- botao editar -->
+			<p:column>
+				<h:commandLink immediate="true" id="botaoeditar">
+					<h:graphicImage url="../resources/img/editar-mensagem.png" />
+					<f:setPropertyActionListener
+						target="#{postagemManagedBean.postagem}" value="#{post}" />
+					<f:ajax execute="botaoeditar" render=":formdados" />
+				</h:commandLink>
+			</p:column>
+			<!-- botao excluir -->
+			<p:column>
+
+				<h:commandLink id="botaoexcluir" immediate="true"
+					action="#{postagemManagedBean.deletarID}">
+					<h:graphicImage url="../resources/img/deletar-usuario.png" />
+					<f:ajax execute="botaoexcluir" render="@form :formdados:msg" />
+					<f:setPropertyActionListener value="#{post}"
+						target="#{postagemManagedBean.postagem}" />
+				</h:commandLink>
+			</p:column>
+			
+		
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>

@@ -4,28 +4,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
+<h:head>
+<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
+</h:head>
 
 <h:body>
-	<h:form>
-		<p:breadCrumb>
-			<p:menuitem />
-			<p:menuitem value="Pagina com JSF" action="index.xhtml" />
-			<p:menuitem value="Pagina com Primefaces" action="primefaces.xhtml" />
-		</p:breadCrumb>
-	</h:form>
+	<h:graphicImage url="../resources/img/logo_size.jpg"/>
+	<p:menubar>
+		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
+		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
+		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
+
+	</p:menubar>
 
 	<h:form id="formdados">
 		<p:messages showDetail="true" showSumary="false" id="msg" />
 		<p:panelGrid columns="2">
-		<!-- teremos que restringir futuramente -->
-			<p:outputLabel></p:outputLabel>
-			<p:outputLabel>Tipo</p:outputLabel>
-			<p:selectOneMenu value="#{usuarioManagedBean.usuarioPessoa.id_perfil}">
-				<f:selectItem itemValue="0" itemLabel="Usuário" />
-				<f:selectItem itemValue="1" itemLabel="Professor" />
-				<f:selectItem itemValue="2" itemLabel="Administrador" />
-			</p:selectOneMenu>
+			<!-- teremos que restringir futuramente -->
+			<p:outputLabel>
+				<p:selectOneMenu
+					value="#{usuarioManagedBean.usuarioPessoa.tipoperfil}">
+					<f:selectItem itemValue="Usu" itemLabel="Usuário" />
+					<f:selectItem itemValue="Prof" itemLabel="Professor" />
+					<f:selectItem itemValue="Adm" itemLabel="Administrador" />
+				</p:selectOneMenu>
+			</p:outputLabel>
+
 			<p:outputLabel>Nome</p:outputLabel>
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.nome}"
 				required="true" requiredMessage="Nome é obrigatório!" />
@@ -37,19 +41,26 @@
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.cpf}" />
 			<p:outputLabel>Senha</p:outputLabel>
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
-			
+
 		</p:panelGrid>
-		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}" ajax="false"/>
-		<p:commandButton value="Novo"  action="#{usuarioManagedBean.novo}"  />
+		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}"
+			ajax="false" />
+		<p:button value="Novo" action="#{usuarioManagedBean.novo}" />
 	</h:form>
 
 	<h:form>
 		<p:panel header="Consultar Usuário">
-			<p:panelGrid columns="3">
-				<h:outputLabel value="Nome:" />
-				<p:inputText value="#{usuarioManagedBean.pesquisa}" />
-				<p:commandButton value="Buscar" actionListener="#{usuarioManagedBean.pesquisar}" update="formtabela"/>
-			</p:panelGrid>
+			<div class="p-field">
+				<p:panelGrid columns="3">
+
+					<h:outputLabel value="Nome:" />
+					<p:inputText value="#{usuarioManagedBean.pesquisa}" />
+					<p:commandButton value="Buscar"
+						actionListener="#{usuarioManagedBean.pesquisar}"
+						update="formtabela" />
+
+				</p:panelGrid>
+			</div>
 		</p:panel>
 	</h:form>
 
@@ -64,7 +75,7 @@
 			<p:column>
 				<h:outputText value="#{usu.sobrenome}" />
 			</p:column>
-			
+
 			<p:column>
 				<h:outputText value="#{usu.email}" />
 			</p:column>
@@ -82,7 +93,7 @@
 			</p:column>
 			<!-- botao excluir -->
 			<p:column>
-			
+
 				<h:commandLink id="botaoexcluir" immediate="true"
 					action="#{usuarioManagedBean.deletarID}">
 					<h:graphicImage url="../resources/img/deletar-usuario.png" />
@@ -95,7 +106,7 @@
 			<p:column>
 				<h:commandLink imediate="true" action="telefone.xhtml"
 					id="botaotelefone">
-					<h:graphicImage url="../resources/img/deletar-usuario.png" />
+					<h:graphicImage url="../resources/img/fone.png" width="20" height="20"/>
 					<f:param name="codigousuario" value="#{usu.id}" />
 				</h:commandLink>
 			</p:column>

@@ -20,4 +20,9 @@ public class DaoUsuario<E> extends DaoGeral<Usuario> {
 		Query query = super.getEntityManager().createQuery("from Usuario where nome like '%"+pesquisa+"%'");
 		return query.getResultList();
 	}
+	public List<Usuario> login(String pesquisa) {
+		Query query = super.getEntityManager().createQuery("from Usuario where nome ='"+pesquisa+"'");
+		return query.getResultList();
+	}
+
 }

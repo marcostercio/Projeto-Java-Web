@@ -5,9 +5,17 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
 </h:head>
 
 <h:body>
+<h:graphicImage url="../resources/img/logo_size.jpg" />
+<p:menubar>
+		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
+		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
+		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
+
+	</p:menubar>
 	<h:form id="formulario">
 		<p:messages showDetail="true" showSummary="false" id="msg" />
 		<p:panelGrid columns="2">

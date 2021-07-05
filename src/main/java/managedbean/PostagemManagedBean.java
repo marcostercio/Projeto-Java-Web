@@ -23,7 +23,7 @@ public class PostagemManagedBean {
 	@PostConstruct
 	public void init() {
 		list = daoGeral.listar(Postagem.class);
-	}
+	} 
 
 	public Postagem getPostagem() {
 		return postagem;
@@ -39,23 +39,25 @@ public class PostagemManagedBean {
 		list.add(postagem);
 		//mensagem de salvamento com sucesso;
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Informação: ","Salvo com sucesso!"));
+		postagem = new Postagem();
 		return "";
 	}
 	
 	public void pesquisar() {
-		list = daoGeral.pesquisarnome(pesquisa);
+		list = daoGeral.pesquisartitulo(pesquisa);
 	}
 
 	public String novo() {
 		postagem = new Postagem();
 		return "";
 	}
+	
 
 	public String deletarID() {
 		//adicionamos o try catch para pegar a excessão enviada pelo throws.
 		try {
 		//daoGeral.delatarID(postagem); não usaremos mais esse. use este método para o telefone
-		daoGeral.removerPostagem(postagem);
+		daoGeral.delatarID(postagem);
 		list.remove(postagem);
 		postagem = new Postagem();
 		//jogando mensagem de deletado com sucesso.

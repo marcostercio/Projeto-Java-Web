@@ -1,11 +1,14 @@
 package model;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -13,23 +16,15 @@ import javax.persistence.OneToOne;
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getId_perfil() {
-		return id_perfil;
-	}
-
-	public void setId_perfil(long id_perfil) {
-		this.id_perfil = id_perfil;
 	}
 
 	public String getEmail() {
@@ -51,15 +46,30 @@ public class Usuario {
 	private String nome;
 	private String senha;
 	private String sobrenome;
-	private long id_perfil;
+	private String tipoperfil;
+
+	
+
+	public String getTipoperfil() {
+		return tipoperfil;
+	}
+
+	public void setTipoperfil(String tipoperfil) {
+		this.tipoperfil = tipoperfil;
+	}
+
+	// private long id_perfil;
 	private String email;
 	private String cpf;
-	//@OneToOne(optional = false, fetch = FetchType.EAGER)
-	//private Perfil perfilUsuario;
-	
-	//um usuario para N telefones
+	// @OneToOne(optional = false, fetch = FetchType.EAGER)
+	// private Perfil perfilUsuario;
+
+	// um usuario para N telefones
 	@OneToMany(mappedBy = "usuario")
 	private List<Telefone> TelUsuario;
+
+	// @ManyToOne(optional = false, fetch = FetchType.EAGER)
+	// private Perfil perfil;
 
 	public List<Telefone> getTelUsuario() {
 		return TelUsuario;
@@ -68,8 +78,6 @@ public class Usuario {
 	public void setTelUsuario(List<Telefone> telUsuario) {
 		TelUsuario = telUsuario;
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -97,10 +105,11 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", senha=" + senha + ", sobrenome=" + sobrenome + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", senha=" + senha + ", sobrenome=" + sobrenome + ",tipoperfil="+tipoperfil+"]";
 	}
 
-	// Hashcode utilizado em COLLECTIONS, arraylists, cria um código para agrupar objetos semelhantes
+	// Hashcode utilizado em COLLECTIONS, arraylists, cria um código para agrupar
+	// objetos semelhantes
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -109,7 +118,7 @@ public class Usuario {
 		return result;
 	}
 
-	//verifica se a lista já contem o objeto
+	// verifica se a lista já contem o objeto
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

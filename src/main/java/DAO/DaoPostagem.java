@@ -9,15 +9,15 @@ import model.Postagem;
 public class DaoPostagem<E> extends DaoGeral<Postagem> {
 	public void removerPostagem(Postagem postagem) throws Exception {
 		getEntityManager().getTransaction().begin();
-		String sqlDeletaTel = "delete from telefone where postagem_id =" + postagem.getId();
-		getEntityManager().createNativeQuery(sqlDeletaTel).executeUpdate();
+		String sqlDeletaPost = "delete from postagem  where id =" + postagem.getId();
+		getEntityManager().createNativeQuery(sqlDeletaPost).executeUpdate();
 		getEntityManager().getTransaction().commit();
 		//HERANÇA aplicada
 		super.delatarID(postagem);
 	}
 
-	public List<Postagem> pesquisarnome(String pesquisa) {
-		Query query = super.getEntityManager().createQuery("from Postagem where nome like '%"+pesquisa+"%'");
+	public List<Postagem> pesquisartitulo(String pesquisa) {
+		Query query = super.getEntityManager().createQuery("from Postagem where titulo like '%"+pesquisa+"%'");
 		return query.getResultList();
 	}
 }
