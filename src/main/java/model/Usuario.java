@@ -2,15 +2,11 @@ package model;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario {
@@ -48,8 +44,6 @@ public class Usuario {
 	private String sobrenome;
 	private String tipoperfil;
 
-	
-
 	public String getTipoperfil() {
 		return tipoperfil;
 	}
@@ -68,8 +62,20 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Telefone> TelUsuario;
 
+	@OneToMany(mappedBy = "usuario")
+	private List<Postagem> Postagem;
+	//private Postagem postagem;
+
 	// @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	// private Perfil perfil;
+
+	public List<Postagem> getPostagem() {
+		return Postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		Postagem = postagem;
+	}
 
 	public List<Telefone> getTelUsuario() {
 		return TelUsuario;
@@ -105,7 +111,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", senha=" + senha + ", sobrenome=" + sobrenome + ",tipoperfil="+tipoperfil+"]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", senha=" + senha + ", sobrenome=" + sobrenome + ",tipoperfil="
+				+ tipoperfil + "]";
 	}
 
 	// Hashcode utilizado em COLLECTIONS, arraylists, cria um código para agrupar
