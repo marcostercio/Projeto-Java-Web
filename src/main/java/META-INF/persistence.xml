@@ -16,12 +16,14 @@
 			<!-- Propriedades JDBC -->
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
+				
+				
 			<!-- tinha um erro aqui das barras -->
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://127.0.0.1:3306/heroku_20f48116cec70ed" />
 			<property name="javax.persistence.jdbc.user" value="b5dd3b6ce577b7" />
 			<property name="javax.persistence.jdbc.password"
-				value="d08ffc25" />
+				value="d08ffc25@us-cdbr-east-04.cleardb.com" />
 			<!-- Configurações específicas do Hibernate -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
