@@ -1,24 +1,29 @@
 .ui-menubar,.ui-menu-child,.ui-menu, .ui-header {
-    background: #6a6a6a !important;
+    background: rgb(187, 187, 187)!important;
     color:#fff;
     margin:10px 0px 10px 0px;
 }
-.ui-menubar,.ui-menu-child,.ui-menu a {
+.fontebranca a{
+color:#fff;
+}
+.ui-menubar ,.ui-menu-child ,.ui-menu a {
 	color:#fff;
 }
 .ui-menubar,.ui-menu-child,.ui-menu a:hover {
 	background:#ccc;
 }
-.ui-button, .ui-commandButton {
+.iu-button, .ui-commandButton {
 	background:#ccc;
-	margin:5px 5px 5px 0px;
+	margin:15px 15px 5px 0px;
+	padding:10px;
 	
 	
 }
 
-.test {width:400px; height:300px; margin: 0 auto; background:blue; }
+
+.test {width:400px; height:300px; margin-left:42%;  }
 .logo{
-	padding:10px 10px 80px;
+	padding:10px 10px 30px;
 }
 .formalinha{
 	background:#141414;
@@ -33,7 +38,7 @@
 	background:#b8860b;
 	color:#141414;
 }
-a{
+a {
 	color:#141414;
 	text-decoration:none;
 }

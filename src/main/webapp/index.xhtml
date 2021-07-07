@@ -27,12 +27,13 @@
 
 				<p:inputText id="username" value="#{loginManagedBean.login}"
 					LoginManagedBeanplaceholder="User name" />
-				<p:password id="password" value="#{loginManagedBean.senha}"
-					placeholder="Password" />
+				<p:password id="toggle" value="#{loginManagedBean.senha}"
+					placeholder="Password" toggleMask="true" redisplay="true" />
 
 				<p:commandButton id="botaomarrom" value="Login" action="#{loginManagedBean.login}"
 					ajax="false" />
 				<a href="usuario.xhtml">Criar uma conta.</a>
+				
 			</p:panelGrid>
 
 		</h:form>

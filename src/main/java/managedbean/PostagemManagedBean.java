@@ -22,6 +22,8 @@ public class PostagemManagedBean {
 	private List<Postagem> list = new ArrayList<Postagem>();
 	private DaoPostagem<Postagem> daoGeral = new DaoPostagem<Postagem>();
 	private String pesquisa;
+	
+
 
 	// criação do método post construct, vai consultar apenas uma vez no banco
 	@PostConstruct
@@ -32,6 +34,8 @@ public class PostagemManagedBean {
 		
 		
 	}
+	
+	
 	public void verificaadm() throws IOException{
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 			    .getExternalContext().getSession(true);

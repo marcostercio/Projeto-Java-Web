@@ -18,22 +18,12 @@ import model.Usuario;
 public class LoginManagedBean {
 	public String login;
 	public String senha;
-	private String usuariosessao;
-	//private Cookie coo;
-	
+	// public String usuariosessao;
+	// private Cookie coo;
 
-
-	//getter e setters
+	// getter e setters
 	public String getLogin() {
 		return login;
-	}
-
-	public String getUsuariosessao() {
-		return usuariosessao;
-	}
-
-	public void setUsuariosessao(String usuariosessao) {
-		this.usuariosessao = usuariosessao;
 	}
 
 	public void setLogin(String login) {
@@ -48,9 +38,9 @@ public class LoginManagedBean {
 		this.senha = senha;
 	}
 
-	//private Usuario usuarioPessoa = new Usuario();
+	// private Usuario usuarioPessoa = new Usuario();
 	private List<Usuario> list = new ArrayList<Usuario>();
-	
+
 	public List<Usuario> getList() {
 		return list;
 	}
@@ -58,47 +48,49 @@ public class LoginManagedBean {
 	public void setList(List<Usuario> list) {
 		this.list = list;
 	}
-	//deslogar
-	public void deslogar () {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-			    .getExternalContext().getSession(false);
+
+	// deslogar
+	public void deslogar() throws IOException {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		if (session != null) {
-	        session.invalidate();
-	    }
+			session.invalidate();
+		}
+		FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+
 	}
-	//private DaoUsuario<Usuario> daoGeral = new DaoUsuario<Usuario>();
+
+	// private DaoUsuario<Usuario> daoGeral = new DaoUsuario<Usuario>();
 	private DaoUsuario<Usuario> daoUsuario = new DaoUsuario<Usuario>();
-	
-	public String login() throws IOException{
+
+	public String login() throws IOException {
 		//
-	 list = daoUsuario.login(this.login, this.senha);
-	if(list.size()>0) {
-		
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-			    .getExternalContext().getSession(true);
-		
-		//passo o usuario pro cookie
-		session.setAttribute("usuario", list.get(0));
-		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
-		this.usuariosessao = usuarioLogado.getNome();
-		System.out.print(usuariosessao);
-		
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Logado!"));
-		
-		//FacesContext.getCurrentInstance().getExternalContext().redirect("feed.xhtml");
-		
-			//System.out.print(usuarioLogado);
-		//usuarioPessoa = new Usuario();
-	
-	}else {
-		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação: ", "login ou senha incorretos"));
-		System.out.print("errados");
-		//usuarioPessoa = new Usuario();
+		list = daoUsuario.login(this.login, this.senha);
+		if (list.size() > 0) {
+
+			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+
+			// passo o usuario pro session
+			session.setAttribute("usuario", list.get(0));
+			Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+			// this.usuariosessao = usuarioLogado.getNome();
+			// System.out.print(usuariosessao);
+
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Logado!"));
+
+			FacesContext.getCurrentInstance().getExternalContext().redirect("feed.xhtml");
+
+			// System.out.print(usuarioLogado);
+			// usuarioPessoa = new Usuario();
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Informação: ", "login ou senha incorretos"));
+			System.out.print("errados");
+			// usuarioPessoa = new Usuario();
+		}
+
+		return "";
 	}
-		
-	return "";	
-	}
-	
+
 }

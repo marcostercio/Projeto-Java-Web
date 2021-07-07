@@ -8,9 +8,10 @@
 	<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
 </h:head>
 
+
 <h:body>	
 <h:graphicImage url="../resources/img/logo_size.jpg"/>
-	<p:menubar>
+	<p:menubar >
 		<p:menuitem value="Home" url="feed.xhtml"></p:menuitem>
 		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
 		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
@@ -20,7 +21,7 @@
 <!-- usuario logado -->
 	<h:form>
 		<p:panelGrid columns="2">
-			<p:outputLabel value="Seja bem vindo #{sessionScope} " />
+			<p:outputLabel value="Seja bem vindo ${usuario.nome} " />
 			<span class="ui-separator"> <span
 				class="ui-icon ui-icon-grip-dotted-vertical" />
 			</span>
@@ -29,7 +30,8 @@
 		</p:panelGrid>
 	</h:form>
 	
-	<h:form>
+		
+		<h:form>
 		<p:panel header="Consultar Postagem">
 			<p:panelGrid columns="3">
 				<h:outputLabel value="titulo:" />
@@ -43,18 +45,18 @@
 
 	<h:form id="formtabela">
 		<p:dataTable value="#{postagemManagedBean.list}" var="post">
-			<p:column headerText="Codigo" >
+			<p:column headerText="Id">
 				<h:outputText value="#{post.id}" />
+			</p:column>
+				<p:column headerText="Categoria">
+				<h:outputText value="#{post.categoria}" />
 			</p:column>
 			<p:column headerText="Titulo">
 				<h:outputText value="#{post.titulo}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Conteudo">
 				<h:outputText value="#{post.conteudo}" />
 			</p:column>
-			<!-- botao editar -->
-			
-			<!-- botao excluir -->
 			
 			
 		
