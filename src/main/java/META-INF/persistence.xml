@@ -20,10 +20,10 @@
 				
 			<!-- tinha um erro aqui das barras -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://127.0.0.1:3306/heroku_20f48116cec70ed" />
-			<property name="javax.persistence.jdbc.user" value="b5dd3b6ce577b7" />
+				value="jdbc:mysql://127.0.0.1:3306/pinboarddb" />
+			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password"
-				value="d08ffc25@us-cdbr-east-04.cleardb.com" />
+				value="" />
 			<!-- Configurações específicas do Hibernate -->
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />

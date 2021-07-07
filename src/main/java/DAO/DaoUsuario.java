@@ -20,9 +20,12 @@ public class DaoUsuario<E> extends DaoGeral<Usuario> {
 		Query query = super.getEntityManager().createQuery("from Usuario where nome like '%"+pesquisa+"%'");
 		return query.getResultList();
 	}
-	public List<Usuario> login(String pesquisa) {
-		Query query = super.getEntityManager().createQuery("from Usuario where nome ='"+pesquisa+"'");
+	public List<Usuario> login(String login, String senha) {
+		Query query = super.getEntityManager().createQuery("from Usuario where nome ='"+login+"' AND senha='"+senha+"'");
 		return query.getResultList();
+		
+	
+		// from usuario where (email=:'"login"' OR  matricula='"login"')  AND senha=''"senha"'
 	}
 
 }

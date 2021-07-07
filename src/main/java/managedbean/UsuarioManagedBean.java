@@ -53,9 +53,7 @@ public class UsuarioManagedBean {
 	public void pesquisar() {
 		list = daoGeral.pesquisarnome(pesquisa);
 	}
-	public void login() {
-		list = daoGeral.login(pesquisa);
-	}
+	
 
 	public String novo() {
 		usuarioPessoa = new Usuario();

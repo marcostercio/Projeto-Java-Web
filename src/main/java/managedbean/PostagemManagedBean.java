@@ -1,5 +1,6 @@
 package managedbean;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +9,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import DAO.DaoPostagem;
 import model.Postagem;
+import model.Usuario;
 
 @ViewScoped
 @ManagedBean(name = "postagemManagedBean")
@@ -23,7 +26,20 @@ public class PostagemManagedBean {
 	// criação do método post construct, vai consultar apenas uma vez no banco
 	@PostConstruct
 	public void init() {
+	
+		
 		list = daoGeral.listar(Postagem.class);
+		
+		
+	}
+	public void verificaadm() throws IOException{
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+			    .getExternalContext().getSession(true);
+		session.setAttribute("usuario", list.get(0));
+		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+		if(!usuarioLogado.getTipoperfil().equals("admin")) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+		}
 	}
 
 	public Postagem getPostagem() {

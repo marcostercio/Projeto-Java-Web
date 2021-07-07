@@ -5,13 +5,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
+	<link type="text/css" rel="stylesheet" href="../resources/estilo.css" />
 </h:head>
-
 <h:body>
-	<h:graphicImage url="../resources/img/logo_size.jpg"/>
+	<h:graphicImage url="../resources/img/logo_size.jpg" />
 	<p:menubar>
-		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
+		<p:menuitem value="Home" url="feed.xhtml"></p:menuitem>
 		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
 		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
 
@@ -38,9 +37,12 @@
 			<p:outputLabel>E-mail</p:outputLabel>
 			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.email}" />
 			<p:outputLabel>CPF</p:outputLabel>
-			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.cpf}" />
+			<p:inputMask mask="999.999.999-99"
+				value="#{usuarioManagedBean.usuarioPessoa.cpf}" />
+				
 			<p:outputLabel>Senha</p:outputLabel>
-			<p:inputText value="#{usuarioManagedBean.usuarioPessoa.senha}" />
+			<p:password  id="inlineFeedback" feedback="true" inline="true"
+				value="#{usuarioManagedBean.usuarioPessoa.senha}" />
 
 		</p:panelGrid>
 		<p:commandButton value="Salvar" action="#{usuarioManagedBean.salvar}"
@@ -66,24 +68,24 @@
 
 	<h:form id="formtabela">
 		<p:dataTable value="#{usuarioManagedBean.list}" var="usu">
-			<p:column>
+			<p:column headerText="Id">
 				<h:outputText value="#{usu.id}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Nome">
 				<h:outputText value="#{usu.nome}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Sobrenome">
 				<h:outputText value="#{usu.sobrenome}" />
 			</p:column>
 
-			<p:column>
+			<p:column headerText="E-mail">
 				<h:outputText value="#{usu.email}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="CPF">
 				<h:outputText value="#{usu.cpf}" />
 			</p:column>
 			<!-- botao editar -->
-			<p:column>
+			<p:column >
 				<h:commandLink immediate="true" id="botaoeditar">
 					<h:graphicImage url="../resources/img/editar-mensagem.png" />
 					<f:setPropertyActionListener
@@ -92,7 +94,7 @@
 				</h:commandLink>
 			</p:column>
 			<!-- botao excluir -->
-			<p:column>
+			<p:column headerText="Ações">
 
 				<h:commandLink id="botaoexcluir" immediate="true"
 					action="#{usuarioManagedBean.deletarID}">
@@ -106,7 +108,8 @@
 			<p:column>
 				<h:commandLink imediate="true" action="telefone.xhtml"
 					id="botaotelefone">
-					<h:graphicImage url="../resources/img/fone.png" width="20" height="20"/>
+					<h:graphicImage url="../resources/img/fone.png" width="20"
+						height="20" />
 					<f:param name="codigousuario" value="#{usu.id}" />
 				</h:commandLink>
 			</p:column>

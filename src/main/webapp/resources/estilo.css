@@ -1,6 +1,7 @@
 .ui-menubar,.ui-menu-child,.ui-menu, .ui-header {
     background: #6a6a6a !important;
     color:#fff;
+    margin:10px 0px 10px 0px;
 }
 .ui-menubar,.ui-menu-child,.ui-menu a {
 	color:#fff;
@@ -14,6 +15,26 @@
 	
 	
 }
-.ui-form{
-	margin-top:10px;
+
+.test {width:400px; height:300px; margin: 0 auto; background:blue; }
+.logo{
+	padding:10px 10px 80px;
 }
+.formalinha{
+	background:#141414;
+}
+#botaomarrom{
+	background:#141414;
+	color:#fff;
+	text-shadow: none;
+	border-color: #6a6a6a;
+}
+#botaomarrom:hover {
+	background:#b8860b;
+	color:#141414;
+}
+a{
+	color:#141414;
+	text-decoration:none;
+}
+a:hover{color:#b8860b;}

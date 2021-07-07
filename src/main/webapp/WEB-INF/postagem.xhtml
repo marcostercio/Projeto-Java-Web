@@ -11,7 +11,7 @@
 <h:body>	
 <h:graphicImage url="../resources/img/logo_size.jpg"/>
 	<p:menubar>
-		<p:menuitem value="Home" url="feed.xhtml"></p:menuitem>
+		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
 		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
 		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
 		
@@ -58,13 +58,13 @@
 
 	<h:form id="formtabela">
 		<p:dataTable value="#{postagemManagedBean.list}" var="post">
-			<p:column headerText="Id">
+			<p:column>
 				<h:outputText value="#{post.id}" />
 			</p:column>
-			<p:column headerText="Titulo">
+			<p:column>
 				<h:outputText value="#{post.titulo}" />
 			</p:column>
-			<p:column headerText="Conteudo">
+			<p:column>
 				<h:outputText value="#{post.conteudo}" />
 			</p:column>
 			<!-- botao editar -->
@@ -77,7 +77,7 @@
 				</h:commandLink>
 			</p:column>
 			<!-- botao excluir -->
-			<p:column headerText="Ações">
+			<p:column>
 
 				<h:commandLink id="botaoexcluir" immediate="true"
 					action="#{postagemManagedBean.deletarID}">

@@ -11,7 +11,7 @@
 <h:body>
 <h:graphicImage url="../resources/img/logo_size.jpg" />
 <p:menubar>
-		<p:menuitem value="Home" url="index.xhtml"></p:menuitem>
+		<p:menuitem value="Home" url="feed.xhtml"></p:menuitem>
 		<p:menuitem value="Painel do Usuário" url="usuario.xhtml"></p:menuitem>
 		<p:menuitem value="Postagem" url="postagem.xhtml"></p:menuitem>
 
@@ -40,19 +40,19 @@
 		<p:dataTable value="#{telefoneManagedBean.usuario.telUsuario}"
 			var="tel" border="1" cellspacing="5">
 			<f:facet name="header">Lista de Telefones</f:facet>
-			<p:column>
+			<p:column headerText="Id">
 				<f:facet name="header">Id</f:facet>
 				<h:outputText value="#{tel.cod}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Numero">
 				<f:facet name="header">Número</f:facet>
 				<h:outputText value="#{tel.telefone}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Tipo">
 				<f:facet name="header">Tipo</f:facet>
 				<h:outputText value="#{tel.tipo}" />
 			</p:column>
-			<p:column>
+			<p:column headerText="Ação">
 				<f:facet name="header">Ação</f:facet>
 				<p:commandLink id="botaoexcluir"
 					action="#{telefoneManagedBean.remover}">
