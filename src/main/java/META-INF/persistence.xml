@@ -19,7 +19,7 @@
 				
 				
 			<!-- tinha um erro aqui das barras -->
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://us-cdbr-east-04.cleardb.com/heroku_20f48116cec70ed?reconnect=true" />
 			<property name="javax.persistence.jdbc.user" value="b5dd3b6ce577b7" />
