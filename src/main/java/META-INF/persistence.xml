@@ -20,7 +20,7 @@
 				
 			<!-- tinha um erro aqui das barras -->
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql:heroku_20f48116cec70ed" />
+				value="jdbc:heroku_20f48116cec70ed?reconnect=true" />
 			<property name="javax.persistence.jdbc.user" value="b5dd3b6ce577b7" />
 			<property name="javax.persistence.jdbc.password"
 			
